@@ -15,6 +15,18 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+
+	//validation
+	if (!form.name || !form.email || !form.password) {
+      return setError('All fields are required');
+    }
+    if (!/\S+@\S+\.\S+/.test(form.email)) {
+      return setError('Enter a valid email address');
+    }
+    if (form.password.length < 6) {
+      return setError('Password must be at least 6 characters');
+    }
+
     try {
       const { data } = await registerUser(form);
       login(data.token, data.user);

@@ -12,6 +12,13 @@ exports.register = async (req, res) => {
   if (!name || !email || !password)
     return res.status(400).json({ message: 'All fields are required' });
 
+  const emailRegex = /\S+@\S+\.\S+/;
+  if (!emailRegex.test(email))
+    return res.status(400).json({ message: 'Enter a valid email address' });
+
+  if (password.length < 6)
+    return res.status(400).json({ message: 'Password must be at least 6 characters' });
+
   try {
     const existing = await User.findOne({ email });
     if (existing)
