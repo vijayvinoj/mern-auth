@@ -30,32 +30,6 @@ A full-stack authentication system built with the MERN stack (MongoDB, Express, 
 - dotenv
 - CORS
 
-## Project Structure
-
-mern-auth/
-├── server/
-│   ├── index.js
-│   ├── models/
-│   │   └── User.js
-│   ├── controllers/
-│   │   └── authController.js
-│   ├── routes/
-│   │   └── authRoutes.js
-│   └── middleware/
-│       └── protect.js
-└── client/
-└── src/
-├── api/
-│   └── auth.js
-├── context/
-│   └── AuthContext.jsx
-├── pages/
-│   ├── Register.jsx
-│   ├── Login.jsx
-│   └── Dashboard.jsx
-└── components/
-└── PrivateRoute.jsx
-
 ## Getting Started
 
 ### Prerequisites
