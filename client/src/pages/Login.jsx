@@ -15,6 +15,14 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+
+    if (!form.email || !form.password)
+      return setError('All fields are required');
+    if (!/\S+@\S+\.\S+/.test(form.email))
+      return setError('Enter a valid email address');
+    if (form.password.length < 6)
+      return setError('Password must be at least 6 characters');
+
     try {
       const { data } = await loginUser(form);
       login(data.token, data.user);
@@ -25,13 +33,17 @@ export default function Login() {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <input name="email"    placeholder="Email"    onChange={handleChange} />
-      <input name="password" placeholder="Password" type="password" onChange={handleChange} />
-      <button onClick={handleSubmit}>Login</button>
-      <p>Don't have an account? <Link to="/register">Register</Link></p>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
+      <div>
+        <h2>Login</h2>
+        {error && <p className="error">{error}</p>}
+        <form onSubmit={handleSubmit}>
+          <input name="email"    placeholder="Email"    onChange={handleChange} />
+          <input name="password" placeholder="Password" type="password" onChange={handleChange} />
+          <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <Link to="/register">Register</Link></p>
+      </div>
     </div>
   );
 }

@@ -16,16 +16,12 @@ export default function Register() {
     e.preventDefault();
     setError('');
 
-	//validation
-	if (!form.name || !form.email || !form.password) {
+    if (!form.name || !form.email || !form.password)
       return setError('All fields are required');
-    }
-    if (!/\S+@\S+\.\S+/.test(form.email)) {
+    if (!/\S+@\S+\.\S+/.test(form.email))
       return setError('Enter a valid email address');
-    }
-    if (form.password.length < 6) {
+    if (form.password.length < 6)
       return setError('Password must be at least 6 characters');
-    }
 
     try {
       const { data } = await registerUser(form);
@@ -37,14 +33,18 @@ export default function Register() {
   };
 
   return (
-    <div>
-      <h2>Register</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <input name="name"     placeholder="Name"     onChange={handleChange} />
-      <input name="email"    placeholder="Email"    onChange={handleChange} />
-      <input name="password" placeholder="Password" type="password" onChange={handleChange} />
-      <button onClick={handleSubmit}>Register</button>
-      <p>Already have an account? <Link to="/login">Login</Link></p>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
+      <div>
+        <h2>Register</h2>
+        {error && <p className="error">{error}</p>}
+        <form onSubmit={handleSubmit}>
+          <input name="name"     placeholder="Name"     onChange={handleChange} />
+          <input name="email"    placeholder="Email"    onChange={handleChange} />
+          <input name="password" placeholder="Password" type="password" onChange={handleChange} />
+          <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <Link to="/login">Login</Link></p>
+      </div>
     </div>
   );
 }

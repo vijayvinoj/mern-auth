@@ -11,10 +11,12 @@ export default function Dashboard() {
   };
 
   return (
-    <div>
+  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
+    <div className="dashboard">
       <h2>Welcome, {user?.name}!</h2>
       <p>Email: {user?.email}</p>
       <button onClick={handleLogout}>Logout</button>
     </div>
-  );
+  </div>
+);
 }
